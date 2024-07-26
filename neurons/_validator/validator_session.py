@@ -783,10 +783,12 @@ class ValidatorSession:
         bt.logging.trace("Requests being sent", requests)
 
         try:
+            start_time = time.time()
             loop = asyncio.get_event_loop()
             responses = loop.run_until_complete(self.query_axons(requests))
             bt.logging.trace(f"Responses: {responses}")
             processed_responses = [self.process_single_response(r) for r in responses]
+            print("2xx request duration: ",  time.time() - start_time)
 
             self.update_scores(processed_responses)
 
