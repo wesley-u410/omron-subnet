@@ -788,7 +788,7 @@ class ValidatorSession:
             responses = loop.run_until_complete(self.query_axons(requests))
             bt.logging.trace(f"Responses: {responses}")
             processed_responses = [self.process_single_response(r) for r in responses]
-            print("2xx request duration: ",  time.time() - start_time)
+            bt.logging.info("2xx request duration: ",  time.time() - start_time)
 
             self.update_scores(processed_responses)
 
